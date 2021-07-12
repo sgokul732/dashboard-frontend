@@ -1,4 +1,5 @@
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Auth from '../Auth';
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -82,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sidebar() {
+
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -94,7 +96,7 @@ export default function Sidebar() {
         localStorage.removeItem("token");
         localStorage.removeItem("roles");
         history.push("/");
-
+        Auth.signout();
     }
     const isAdmin = () => {
         if (localStorage.getItem("roles").includes("ROLE_ADMIN")) {
@@ -105,7 +107,7 @@ export default function Sidebar() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
+    !Auth.getAuth() && history.push("/")
     return ( <
         div className = { classes.root } >
 

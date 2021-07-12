@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Auth from '../Auth';
 import axios from 'axios'
 import { Grid, Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -36,6 +36,7 @@ const LoginPage = () => {
                 token);
             localStorage.setItem("roles",
                 roles);
+            Auth.authenticate()
             history.push("/mainpage");
         }).catch(err => {
 
