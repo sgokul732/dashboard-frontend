@@ -33,9 +33,9 @@ export default function Graph(props) {
             data: v,
             fill: false,
 
-            borderColor: 'rgba(75,192,192,1)',
+            borderColor: '#e91e63',
 
-            backgroundColor: 'rgba(75,192,192,1)',
+            backgroundColor: '#e91e63',
 
             borderWidth: 2,
         }, ],
