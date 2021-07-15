@@ -47,88 +47,39 @@ function PostList(props) {
     });
     const classes = useStyles();
     const csvdata = props.postdata && props.postdata.length && jsonTocsv(props.postdata);
-
+    const data = props.postdata
+    let keys = data.length && Object.keys(data[0])
+    keys && keys.splice(0, 1)
     return ( <
-        div > {
-            csvdata && <
-            CSVLink data = {
-                csvdata
-            } > Download CSV < /CSVLink>}   <
-            TableContainer component = { Paper } >
-            <
-            Table className = { classes.table } > <
-            TableHead > <
-            TableRow > <
-            StyledTableCell align = "right" > IndicatorName < /StyledTableCell><
-            StyledTableCell align = "right" > Jan19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Feb19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Mar19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Apr19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > May19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Jun19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > July19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Aug19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Sep19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Oct19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Nov19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Dec19(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Jan20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Feb20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Mar20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Apr20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > May20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Jun20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > July20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Aug20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Sep20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Oct20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Nov20(g) < /StyledTableCell><
-            StyledTableCell align = "right" > Dec20(g) < /StyledTableCell></TableRow > <
-            /TableHead><
-            TableBody > {
-                props.postdata.map((row) => ( < StyledTableRow key = { row["IndicatorName"] } > <
-                    StyledTableCell align = "right" > {
-                        row["Indicator Name"]
-                    } < /StyledTableCell><
-                    StyledTableCell align = "right" > {
-                        row["Jan-19"]
-                    } < /StyledTableCell><
-                    StyledTableCell align = "right" > {
-                        row["Feb-19"]
-                    } < /StyledTableCell><
-                    StyledTableCell align = "right" > {
-                        row["Mar-19"]
-                    } < /StyledTableCell> <
-                    StyledTableCell align = "right" > { row["Apr-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["May-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Jun-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Jul-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Aug-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Sep-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Oct-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Nov-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Dec-19"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > {
-                        row["Jan-20"]
-                    } < /StyledTableCell><
-                    StyledTableCell align = "right" > {
-                        row["Feb-20"]
-                    } < /StyledTableCell><
-                    StyledTableCell align = "right" > {
-                        row["Mar-20"]
-                    } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Apr-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["May-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Jun-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Jul-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Aug-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Sep-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Oct-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Nov-20"] } < /StyledTableCell><
-                    StyledTableCell align = "right" > { row["Dec-20"] } < /StyledTableCell>< /StyledTableRow >
-                ))
-            } <
-            /TableBody></Table > < /TableContainer></div >
-        )
+            div > {
+                csvdata && <
+                CSVLink data = {
+                    csvdata
+                } > Download CSV < /CSVLink>}   <
+                TableContainer component = { Paper } >
+                <
+                Table className = { classes.table } > <
+                TableHead > <
+                TableRow > {
+                    keys && keys.map(ele => <
+                        StyledTableCell align = "right" > { ele } < /StyledTableCell>) } </TableRow > <
+                        /TableHead><
+                        TableBody > {
+                            data.map(ele =>
+                                <
+                                StyledTableRow > {
+                                    keys && keys.map(cell => {
+                                            const x = ele[cell]
+                                            return <StyledTableCell align = "center" > {
+                                                    x
+                                                } <
+                                                /StyledTableCell >} )}
 
-    }
+                                            <
+                                            /StyledTableRow>
+                                        )
+                                    } <
+                                    /TableBody></Table > < /TableContainer></div >
+                                )
+
+                            }

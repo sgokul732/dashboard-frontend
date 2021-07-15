@@ -55,7 +55,7 @@ const Register = () => {
         }
         payload.admin = undefined
 
-        console.log("ffffff", payload)
+
         axios.post("http://localhost:8080/api/auth/signup", payload).then(res => {
             setError("")
             setSuccess(res.data.message)
